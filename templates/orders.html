@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Orders | BagBloom{% endblock %}
+{% block content %}
+<section class="page-hero compact">
+  <p class="eyebrow">Orders</p>
+  <h1>Order history and tracking</h1>
+</section>
+<section class="table-card">
+  <table>
+    <thead><tr><th>Order</th><th>Date</th><th>Total</th><th>Status</th><th>Tracking</th></tr></thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.date }}</td>
+        <td>{{ currency_symbol }}{{ order.total }}</td>
+        <td><span class="status">{{ order.status }}</span></td>
+        <td><div class="mini-track"><span></span><span></span><span></span></div></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5">No orders yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

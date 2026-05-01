@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Profile | BagBloom{% endblock %}
+{% block content %}
+<section class="profile-layout">
+  <aside class="profile-card">
+    <div class="avatar">{{ user.name[0] }}</div>
+    <h1>{{ user.name }}</h1>
+    <p>{{ user.email }}</p>
+    <span class="status">{{ user.role }}</span>
+  </aside>
+  <div class="profile-main">
+    <section class="form-card">
+      <h2>Profile info</h2>
+      <div class="form-grid">
+        <label>Name <input value="{{ user.name }}"></label>
+        <label>Email <input value="{{ user.email }}"></label>
+      </div>
+    </section>
+    <section class="form-card">
+      <h2>Saved addresses</h2>
+      <p>No saved addresses yet.</p>
+    </section>
+    <section class="form-card">
+      <h2>Recent orders</h2>
+      {% for order in orders %}
+      <div class="summary-line"><span>{{ order.id }} - {{ order.status }}</span><strong>{{ currency_symbol }}{{ order.total }}</strong></div>
+      {% else %}
+      <p>No orders yet.</p>
+      {% endfor %}
+    </section>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Add Handbag | BagBloom{% endblock %}
+{% block content %}
+<section class="admin-form-shell">
+  <form class="form-card ajax-form" action="{{ url_for('add_product') }}" method="post" enctype="multipart/form-data">
+    <p class="eyebrow">Handbag management</p>
+    <h1>Add handbag</h1>
+    <div class="form-grid">
+      <label>Handbag name <input name="name" required></label>
+      <label>Price <input type="number" name="price" required></label>
+      <label>Style <input name="category" placeholder="Tote, sling, clutch, shoulder bag"></label>
+      <label>Material <input name="material" placeholder="Leather, canvas, vegan leather"></label>
+      <label>Color <input name="color" placeholder="Blush pink, tan, black"></label>
+      <label>Image upload <input type="file" name="image" accept="image/*"></label>
+      <label class="wide">Description <textarea name="description" rows="5"></textarea></label>
+    </div>
+    <button class="button button-dark" type="submit">Save handbag</button>
+  </form>
+</section>
+{% endblock %}

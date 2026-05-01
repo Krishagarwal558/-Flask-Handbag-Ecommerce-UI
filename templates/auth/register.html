@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Register | BagBloom{% endblock %}
+{% block content %}
+<section class="auth-shell">
+  <form class="auth-card ajax-form" action="{{ url_for('register') }}" method="post">
+    <p class="eyebrow">Start shopping</p>
+    <h1>Create your account</h1>
+    <label>Name <input name="name" required></label>
+    <label>Email <input type="email" name="email" required></label>
+    <label>Password <input type="password" name="password" required></label>
+    <button class="button button-dark full" type="submit">Register</button>
+    <div class="auth-links"><a href="{{ url_for('login') }}">Already have an account?</a></div>
+  </form>
+</section>
+{% endblock %}

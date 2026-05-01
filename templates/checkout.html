@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Checkout | BagBloom{% endblock %}
+{% block content %}
+<section class="page-hero compact">
+  <p class="eyebrow">Checkout</p>
+  <h1>Complete your order</h1>
+</section>
+<form class="checkout-layout ajax-form" action="{{ url_for('checkout') }}" method="post">
+  <section class="form-card">
+    <h2>Shipping address</h2>
+    <label>Saved addresses
+      <select name="saved_address">
+        <option value="">No saved addresses yet</option>
+      </select>
+    </label>
+    <div class="form-grid">
+      <label>Full name <input name="name" required></label>
+      <label>Phone <input name="phone" required></label>
+      <label class="wide">Address <input name="address" required></label>
+      <label>City <input name="city" required></label>
+      <label>Postal code <input name="postal_code" required></label>
+    </div>
+    <h2>Payment</h2>
+    <div class="payment-options">
+      <label><input type="radio" name="payment" value="cod" checked> Cash on Delivery</label>
+      <label><input type="radio" name="payment" value="card"> Card</label>
+      <label><input type="radio" name="payment" value="upi"> UPI</label>
+    </div>
+  </section>
+  <aside class="summary-card">
+    <h2>Order summary</h2>
+    {% for item in items %}
+    <div class="summary-line"><span>{{ item.name }} x {{ item.quantity }}</span><strong>{{ currency_symbol }}{{ item.line_total }}</strong></div>
+    {% else %}
+    <p class="muted">No items in cart.</p>
+    {% endfor %}
+    <div class="summary-line total"><span>Total</span><strong>{{ currency_symbol }}{{ total }}</strong></div>
+    <button class="button button-dark full" type="submit">Place order</button>
+  </aside>
+</form>
+{% endblock %}

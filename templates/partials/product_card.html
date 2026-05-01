@@ -1,0 +1,16 @@
+<article class="product-card" data-product-card>
+  <button class="wishlist" data-wishlist aria-label="Add {{ product.name }} to wishlist">♡</button>
+  <a href="{{ url_for('product_detail', product_id=product.id) }}" class="product-media">
+    <img src="{{ product.image }}" alt="{{ product.name }}">
+    <span class="badge">{{ product.badge }}</span>
+  </a>
+  <div class="product-body">
+    <p class="muted">{{ product.category|title }}</p>
+    <h3>{{ product.name }}</h3>
+    <div class="product-meta">
+      <strong>{{ currency_symbol }}{{ product.price }}</strong>
+      <span>Rating {{ product.rating }}</span>
+    </div>
+    <button class="button button-dark full" data-add-cart data-product-id="{{ product.id }}">Add to cart</button>
+  </div>
+</article>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Order Placed | BagBloom{% endblock %}
+{% block content %}
+<section class="success-panel">
+  <span class="success-mark">✓</span>
+  <p class="eyebrow">Order confirmed</p>
+  <h1>{{ order_id }} is on its way to the boutique.</h1>
+  <p>Your order has been placed successfully. Track its journey below.</p>
+  <div class="tracking">
+    <span class="active">Placed</span>
+    <span>Shipped</span>
+    <span>Delivered</span>
+  </div>
+  <a class="button button-dark" href="{{ url_for('orders') }}">View orders</a>
+</section>
+{% endblock %}

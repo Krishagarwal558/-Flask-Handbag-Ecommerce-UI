@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}BagBloom | Handbags{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Welcome to our store</p>
+    <h1>Customized handbags made for everyday style.</h1>
+    <p>Your handbag storefront is empty and ready for real bags, collections, orders, and customer data from your Flask backend.</p>
+    <div class="hero-actions">
+      <a class="button button-dark" href="{{ url_for('products') }}">Shop handbags</a>
+      <a class="button button-light" href="#featured">Explore collection</a>
+    </div>
+  </div>
+  <div class="hero-visual empty-visual">
+    <div>
+      <span>Empty boutique</span>
+      <strong>Ready for your first handbag</strong>
+    </div>
+  </div>
+</section>
+
+<section id="featured" class="section-block">
+  <div class="section-heading">
+    <p class="eyebrow">Featured products</p>
+    <h2>Explore personalized handbags</h2>
+    <a href="{{ url_for('products') }}">View all</a>
+  </div>
+  <div class="product-grid">
+    {% for product in featured %}
+      {% include "partials/product_card.html" %}
+    {% else %}
+      <div class="empty-state wide">No featured handbags yet. Add handbags from the admin panel after signing in as an authorized admin.</div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-heading">
+    <p class="eyebrow">Collections</p>
+    <h2>Shop by collection</h2>
+  </div>
+  <div class="category-grid">
+    {% for category in categories %}
+    <a class="category-card" href="{{ url_for('products', category=category.slug) }}">
+      <img src="{{ category.image }}" alt="{{ category.name }}">
+      <span>{{ category.name }}</span>
+    </a>
+    {% else %}
+      <div class="empty-state wide">No handbag categories yet.</div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-heading">
+    <p class="eyebrow">Trending now</p>
+    <h2>Customer favorites</h2>
+  </div>
+  <div class="carousel">
+    {% for product in trending %}
+    <a class="trend-card" href="{{ url_for('product_detail', product_id=product.id) }}">
+      <img src="{{ product.image }}" alt="{{ product.name }}">
+      <div>
+        <strong>{{ product.name }}</strong>
+        <span>{{ currency_symbol }}{{ product.price }} - Rating {{ product.rating }}</span>
+      </div>
+    </a>
+    {% else %}
+      <div class="empty-state">No trending handbags yet.</div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

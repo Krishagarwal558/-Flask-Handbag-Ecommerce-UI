@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} | BagBloom{% endblock %}
+{% block content %}
+<section class="product-detail">
+  <div class="gallery">
+    <img class="gallery-main" data-gallery-main src="{{ product.gallery[0] }}" alt="{{ product.name }}">
+    <div class="gallery-thumbs">
+      {% for image in product.gallery %}
+      <button data-gallery-thumb="{{ image }}"><img src="{{ image }}" alt="{{ product.name }} view {{ loop.index }}"></button>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="detail-copy">
+    <p class="eyebrow">{{ product.category|title }}</p>
+    <h1>{{ product.name }}</h1>
+    <div class="rating"><span>No reviews yet</span></div>
+    <p class="price">{{ currency_symbol }}{{ product.price }}</p>
+    <p>{{ product.description }}</p>
+    <div class="quantity-row">
+      <label>Qty <input type="number" value="1" min="1" data-product-quantity></label>
+      <button class="button button-dark" data-add-cart data-product-id="{{ product.id }}">Add to cart</button>
+      <button class="button button-light" data-wishlist>♡ Wishlist</button>
+    </div>
+  </div>
+</section>
+<section class="section-block">
+  <div class="section-heading">
+    <p class="eyebrow">Related</p>
+    <h2>You may also like</h2>
+  </div>
+  <div class="product-grid three">
+    {% for product in related %}
+      {% include "partials/product_card.html" %}
+    {% else %}
+      <div class="empty-state">No related handbags yet.</div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

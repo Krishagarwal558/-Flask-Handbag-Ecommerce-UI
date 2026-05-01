@@ -1,0 +1,16 @@
+<footer class="footer">
+  <section class="footer-note">
+    <h2>Important Note</h2>
+    <p>BagBloom is ready for your real handbag catalog. Add your own collections, custom bag details, prices, images, delivery rules, and customer data from the Flask backend.</p>
+  </section>
+  <div>
+    <strong>BagBloom</strong>
+    <p>Personalized handbag storefront built with Flask, Jinja, CSS, and vanilla JavaScript.</p>
+  </div>
+  <div class="footer-links">
+    <a href="{{ url_for('products') }}">Shop</a>
+    <a href="{{ url_for('checkout') }}">Checkout</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
+  </div>
+  <small>&copy; {{ year }} BagBloom. Integration-ready storefront.</small>
+</footer>

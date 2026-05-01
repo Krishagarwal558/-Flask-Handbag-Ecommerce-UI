@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Shop | BagBloom{% endblock %}
+{% block content %}
+<section class="page-hero compact">
+  <p class="eyebrow">Shop</p>
+  <h1>Find the right handbag without the scroll fatigue.</h1>
+</section>
+<section class="shop-layout">
+  <aside class="filter-panel">
+    <form action="{{ url_for('products') }}" method="get" class="stack">
+      <label>Search <input type="search" name="q" value="{{ selected.get('q', '') }}" placeholder="Search handbags"></label>
+      <label>Category
+        <select name="category">
+          <option value="">All categories</option>
+          {% for category in categories %}
+          <option value="{{ category.slug }}" {% if selected.get('category') == category.slug %}selected{% endif %}>{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Max price
+        <input type="range" name="price" min="0" max="100000" step="500" value="{{ selected.get('price', 100000) }}" data-price-range>
+        <span class="range-value">{{ currency_symbol }}<span data-price-value>{{ selected.get('price', 100000) }}</span></span>
+      </label>
+      <label>Sort
+        <select name="sort">
+          <option value="popular">Popularity</option>
+          <option value="price-low">Price low-high</option>
+          <option value="price-high">Price high-low</option>
+        </select>
+      </label>
+      <button class="button button-dark full" type="submit">Apply filters</button>
+    </form>
+  </aside>
+  <div class="shop-results">
+    <div class="product-grid">
+      {% for product in products %}
+        {% include "partials/product_card.html" %}
+      {% else %}
+        <div class="empty-state">No handbags matched your filters.</div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Cart | BagBloom{% endblock %}
+{% block content %}
+<section class="page-hero compact">
+  <p class="eyebrow">Cart</p>
+  <h1>Your selected handbags</h1>
+</section>
+<section class="cart-layout">
+  <div class="cart-list">
+    {% for item in items %}
+    <article class="cart-item" data-cart-item="{{ item.id }}">
+      <img src="{{ item.image }}" alt="{{ item.name }}">
+      <div>
+        <h3>{{ item.name }}</h3>
+        <p class="muted">{{ currency_symbol }}{{ item.price }} each</p>
+        <div class="stepper">
+          <button data-cart-action="decrease" data-product-id="{{ item.id }}">-</button>
+          <span>{{ item.quantity }}</span>
+          <button data-cart-action="increase" data-product-id="{{ item.id }}">+</button>
+        </div>
+      </div>
+      <strong>{{ currency_symbol }}{{ item.line_total }}</strong>
+      <button class="remove" data-cart-action="remove" data-product-id="{{ item.id }}">Remove</button>
+    </article>
+    {% else %}
+    <div class="empty-state">Your cart is ready for a beautiful handbag.</div>
+    {% endfor %}
+  </div>
+  <aside class="summary-card">
+    <h2>Order summary</h2>
+    <div class="coupon-row">
+      <input placeholder="Coupon code">
+      <button class="button button-light" data-coupon>Apply</button>
+    </div>
+    <div class="summary-line"><span>Subtotal</span><strong>{{ currency_symbol }}{{ total }}</strong></div>
+    <div class="summary-line"><span>Shipping</span><strong>Free</strong></div>
+    <a class="button button-dark full" href="{{ url_for('checkout') }}">Checkout</a>
+  </aside>
+</section>
+{% endblock %}
