@@ -1,6 +1,6 @@
 # Full Stack E-Commerce System (Production Ready)
 
-This is a separate handbag ecommerce project. It starts empty by default and does not touch the coaching management app.
+This is a separate handbag ecommerce project. It starts empty by default.
 
 ## Run
 
