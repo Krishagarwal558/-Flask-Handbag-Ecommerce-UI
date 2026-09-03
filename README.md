@@ -1,5 +1,8 @@
 # Full Stack E-Commerce System (Production Ready)
 
+> [!NOTE]
+> **Development Note:** This repository was published after the initial development phase. The GitHub commit history therefore does not represent the complete development timeline.
+
 This is a separate handbag ecommerce project. It starts empty by default.
 
 ## Run
